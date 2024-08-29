@@ -1,12 +1,10 @@
 module.exports = {
   devServer: {
+    host: "0.0.0.0", // 使服务器绑定到所有网络接口
+    port: 8080,
     watchOptions: {
       poll: true,
     },
-    // 使 Docker 容器可以通過主機訪問
-    host: "0.0.0.0",
-    // Nginx port
-    port: 80,
   },
   outputDir: "dist",
 };

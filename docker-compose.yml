@@ -6,7 +6,7 @@ services:
     container_name: mysql
 
     #本地測試時要開
-    # platform: linux/x86_64
+    platform: linux/x86_64
 
     ports:
       - "3310:3306"
@@ -49,13 +49,17 @@ services:
       dockerfile: Dockerfile-vue
     container_name: vue_app
     ports:
-      - "8080:80"
+      #開發模式
+      - "8080:8080"
+      #生產模式
+      # - "8080:80"
     networks:
       - my_network
     # 使本地端更改時, 容器內code也會同步更新
     # 生產模式
     volumes:
-      - ./frontend/dist:/usr/share/nginx/html
+      # - ./frontend/dist:/usr/share/nginx/html
+      - ./frontend:/app/frontend
 
 volumes:
   mysql-data-volumes:
