@@ -1,0 +1,65 @@
+version: "3.1"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+
+    #本地測試時要開
+    # platform: linux/x86_64
+
+    ports:
+      - "3310:3306"
+    volumes:
+      - mysql-data-volumes:/var/lib/mysql
+      - ./mysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf
+    restart: always
+    environment:
+      - MYSQL_USER=solochiou
+      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=split_the_bill
+    networks:
+      - my_network
+
+  flask_app:
+    build:
+      context: .
+      dockerfile: Dockerfile-flask
+    container_name: flask_app
+    ports:
+      - "5000:5000"
+    environment:
+      # (本地開發用@localhost:主機端口, 連上docker用@mysql:容器端口)
+      - DATABASE_URL=mysql+mysqlconnector://solochiou:password@localhost:3306/split_the_bill
+      - LINE_CHANNEL_ACCESS_TOKEN=${LINE_CHANNEL_ACCESS_TOKEN}
+      - LINE_CHANNEL_SECRET=${LINE_CHANNEL_SECRET}
+    depends_on:
+      - mysql
+    networks:
+      - my_network
+    volumes:
+      # 使本地端更改時, 容器內code也會同步更新
+      # 語法 [本地容器位置]:[掛載容器位置]
+      - .:/app
+
+  vue_app:
+    build:
+      context: .
+      dockerfile: Dockerfile-vue
+    container_name: vue_app
+    ports:
+      - "8080:80"
+    networks:
+      - my_network
+    # 使本地端更改時, 容器內code也會同步更新
+    # 生產模式
+    volumes:
+      - ./frontend/dist:/usr/share/nginx/html
+
+volumes:
+  mysql-data-volumes:
+
+networks:
+  my_network:
+    driver: bridge
