@@ -31,7 +31,7 @@ services:
       - "5000:5000"
     environment:
       # (本地開發用@localhost:主機端口, 連上docker用@mysql:容器端口)
-      - DATABASE_URL=mysql+mysqlconnector://solochiou:password@localhost:3306/split_the_bill
+      - DATABASE_URL=mysql+mysqlconnector://solochiou:password@mysql:3306/split_the_bill
       - LINE_CHANNEL_ACCESS_TOKEN=${LINE_CHANNEL_ACCESS_TOKEN}
       - LINE_CHANNEL_SECRET=${LINE_CHANNEL_SECRET}
     depends_on:
