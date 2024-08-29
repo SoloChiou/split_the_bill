@@ -17,6 +17,15 @@ export default new Router({
   mode: "history",
   routes: [
     {
+      path: "/",
+      redirect: "/my_groups",
+    },
+    {
+      path: "/my_groups",
+      name: "MyGroups",
+      component: MyGroups,
+    },
+    {
       path: "/create_group",
       name: "CreateGroup",
       component: CreateGroup,
@@ -25,11 +34,6 @@ export default new Router({
       path: "/group/:group_id/add_users",
       name: "AddUsers",
       component: AddUsers,
-    },
-    {
-      path: "/my_groups",
-      name: "MyGroups",
-      component: MyGroups,
     },
     {
       path: "/group/:group_id",
