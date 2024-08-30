@@ -60,6 +60,7 @@ services:
     volumes:
       # - ./frontend/dist:/usr/share/nginx/html
       - ./frontend:/app/frontend
+      - /app/frontend/node_modules
     command: npm run dev -- --host 0.0.0.0
 
 volumes:
