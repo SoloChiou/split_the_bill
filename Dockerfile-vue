@@ -15,8 +15,7 @@ COPY frontend/ .
 
 # ==== 開發模式 Start ==== 
 EXPOSE 8080
-
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
 # ==== 開發模式 End ==== 
 
 

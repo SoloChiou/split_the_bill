@@ -60,6 +60,7 @@ services:
     volumes:
       # - ./frontend/dist:/usr/share/nginx/html
       - ./frontend:/app/frontend
+    command: npm run dev -- --host 0.0.0.0
 
 volumes:
   mysql-data-volumes:

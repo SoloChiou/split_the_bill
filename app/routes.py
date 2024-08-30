@@ -10,7 +10,7 @@ main = Blueprint('main', __name__)
 
 @main.route('/', methods=['GET'])
 def index():
-    return 'Hello Flask!'
+    return 'Hello Flask!!!!, The backend connected successfully.'
 
 @main.route('/group', methods=['POST'])
 def create_group():
