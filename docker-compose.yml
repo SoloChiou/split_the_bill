@@ -13,7 +13,7 @@ services:
     volumes:
       - mysql-data-volumes:/var/lib/mysql
       - ./mysql/mysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf
-    command: ["sh", "-c", "chmod -R 755 /var/lib/mysql && /usr/bin/mysqld"]
+    command: ["sh", "-c", "chmod -R 755 /var/lib/mysql && /usr/sbin/mysqld"]
     restart: always
     environment:
       - MYSQL_USER=solochiou
