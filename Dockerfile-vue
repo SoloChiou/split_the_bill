@@ -11,7 +11,10 @@ RUN npm install
 
 # 複製前端文件並建構
 # COPY <源路径> <目标路径>
-COPY frontend/ .
+COPY frontend /app/frontend
+
+# 讓vue的修可以直接在docker container響應
+ENV CHOKIDAR_USEPOLLING=true
 
 # ==== 開發模式 Start ==== 
 EXPOSE 8080
