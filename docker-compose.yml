@@ -55,8 +55,6 @@ services:
       # - "8080:80"
     networks:
       - my_network
-    # 使本地端更改時, 容器內code也會同步更新
-    # 生產模式
     volumes:
       # - ./frontend/dist:/usr/share/nginx/html
       - ./frontend:/app/frontend
