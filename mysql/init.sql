@@ -1,1 +1,0 @@
-CREATE DATABASE IF NOT EXISTS split_the_bill;
