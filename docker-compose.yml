@@ -44,23 +44,31 @@ services:
       # 語法 [本地容器位置]:[掛載容器位置]
       - .:/app
 
-  vue_app:
+  vue_app_dev:
     build:
       context: .
-      dockerfile: Dockerfile-vue
-    container_name: vue_app
+      dockerfile: Dockerfile-vue_dev
+    container_name: vue_app_dev
     ports:
-      #開發模式
       - "8080:8080"
-      #生產模式
-      # - "8080:80"
     networks:
       - my_network
     volumes:
-      # - ./frontend/dist:/usr/share/nginx/html
       - ./frontend:/app/frontend
       - /app/frontend/node_modules
     command: npm run dev -- --host 0.0.0.0
+
+  vue_app_prod:
+    build:
+      context: .
+      dockerfile: Dockerfile-vue_prod
+    container_name: vue_app_prod
+    ports:
+      - "8080:80"
+    networks:
+      - my_network
+    volumes:
+      - ./frontend/dist:/usr/share/nginx/html
 
 volumes:
   mysql-data-volumes:
