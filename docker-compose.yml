@@ -6,7 +6,7 @@ services:
     container_name: mysql
 
     #本地測試時要開
-    platform: linux/x86_64
+    # platform: linux/x86_64
 
     ports:
       - "3310:3306"
