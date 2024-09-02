@@ -16,7 +16,7 @@ COPY frontend .
 # 在/app下生成dist目錄
 RUN npm run build
 
-# 使用 Nginx 提靜態文件服務
+# 使用 Nginx 提靜態的文件服務
 FROM nginx:alpine
 
 # 複製自定義 Nginx 配置文件到容器中
