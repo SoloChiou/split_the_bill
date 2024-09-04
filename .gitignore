@@ -1,4 +1,5 @@
 node_modules/
+structure.txt
 
 npm-debug.log*
 yarn-debug.log*

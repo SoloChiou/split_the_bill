@@ -16,4 +16,8 @@ COPY . .
 # 設置環境變亮
 ENV FLASK_APP=app.py
 
-CMD ["python", "app.py"]
+# # 運行數據庫遷移並啟動應用
+# # 'sh' '-c' 同時執行db遷移和啟動flask應用
+CMD ["sh", "-c", "flask db upgrade && python app.py"]
+
+# CMD ["python", "app.py"]

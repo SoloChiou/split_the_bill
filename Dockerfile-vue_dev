@@ -1,7 +1,7 @@
 # Vue Dockerfile dev
 FROM node:16 AS build
 
-WORKDIR /app/frontend
+WORKDIR /frontend
 
 # 複製 package.json 和 package-lock.json
 COPY frontend/package*.json ./
@@ -11,13 +11,10 @@ RUN npm install
 
 # 複製前端文件並建構
 # COPY <源路径> <目标路径>
-COPY frontend /app/frontend
+COPY frontend /frontend
 
 # 讓vue的修可以直接在docker container響應
 ENV CHOKIDAR_USEPOLLING=true
 
 EXPOSE 8080
 CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
-
-
-

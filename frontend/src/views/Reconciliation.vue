@@ -75,9 +75,8 @@
                 v-for="step in settlementSteps"
                 :key="`${step.receiver_id} - ${step.debtor_id}`"
               >
-                {{ step.receiver_name }} 跟 {{ step.debtor_name }} 收 ${{
-                  step.amount
-                }}
+                {{ step.receiver_name }} 跟 {{ step.debtor_name }} 收 $
+                {{ step.amount }}
               </li>
             </ol>
           </ul>
