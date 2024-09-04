@@ -28,6 +28,8 @@ services:
       context: .
       dockerfile: Dockerfile-flask
     container_name: flask_app
+    expose:
+      - "80"
     ports:
       - "5000:5000"
     environment:
@@ -67,8 +69,8 @@ services:
       - "80"
     networks:
       - my_network
-    volumes:
-      - ./frontend/dist:/usr/share/nginx/html
+    # volumes:
+      # - ./frontend/dist:/usr/share/nginx/html
 
   nginx:
     image: nginx:latest
@@ -79,6 +81,7 @@ services:
       - ./frontend/nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - vue_app_prod
+      - flask_app
     networks:
       - my_network
 

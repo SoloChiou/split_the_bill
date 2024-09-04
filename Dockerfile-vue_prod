@@ -23,6 +23,5 @@ FROM nginx:latest
 EXPOSE 80
 
 # 複製自定義 Nginx 配置文件到容器中
-# COPY frontend/nginx/nginx.conf /etc/nginx/conf.d/nginx.conf
 COPY --from=build /frontend/dist /usr/share/nginx/html
 
