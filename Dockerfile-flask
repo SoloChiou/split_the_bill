@@ -1,0 +1,19 @@
+#Flask Dockerfile
+FROM python:3.10
+
+WORKDIR /app
+
+# 更新 pip 和 setuptools
+RUN pip install --upgrade pip setuptools
+
+# 複製 requirements.txt 並安裝 Python 依賴
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
+
+# 將主機當前目錄中的所有文件複製到容器的工作目錄中
+COPY . .
+
+# 設置環境變亮
+ENV FLASK_APP=app.py
+
+CMD ["python", "app.py"]

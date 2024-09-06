@@ -1,0 +1,27 @@
+# Dockerfile-vue_prob
+FROM node:16 AS build
+
+WORKDIR /frontend
+
+# 複製 package.json 和 package-lock.json
+COPY frontend/package*.json ./
+
+# 安裝 Node.js 依賴
+RUN npm install
+
+# 複製前端文件並建構
+# COPY <源路径> <目标路径>
+COPY frontend .
+
+# 在/app下生成dist目錄
+RUN npm run build
+
+# 使用 Nginx 提靜態的文件服務
+FROM nginx:latest
+
+# Expose Nginx port
+EXPOSE 80
+
+# 複製 Nginx 配置文件到容器中
+COPY --from=build /frontend/dist /usr/share/nginx/html
+

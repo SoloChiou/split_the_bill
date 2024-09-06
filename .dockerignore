@@ -1,0 +1,4 @@
+database/
+notes/
+.venv/
+node_modules
