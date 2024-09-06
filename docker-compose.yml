@@ -79,9 +79,11 @@ services:
       - "8080:80"
       - "443:443"
     volumes:
-      - ./frontend/nginx/default.conf:/etc/nginx/conf.d/default.
-      - ./frontend/nginx/ssl/self-signed.crt:/etc/nginx/ssl/self-signed.crt
-      - ./frontend/nginx/ssl/self-signed.key:/etc/nginx/ssl/self-signed.key
+      - ./frontend/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      # - ./frontend/nginx/ssl/nginx.crt:/etc/nginx/ssl/nginx.crt
+      # - ./frontend/nginx/ssl/nginx.key:/etc/nginx/ssl/nginx.key
+      - /etc/letsencrypt/live/splitthebill.ddns.net/fullchain.pem:/etc/nginx/ssl/fullchain.pem
+      - /etc/letsencrypt/live/splitthebill.ddns.net/privkey.pem:/etc/nginx/ssl/privkey.pem
     depends_on:
       - vue_app_prod
       - flask_app
