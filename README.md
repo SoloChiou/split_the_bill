@@ -1,5 +1,7 @@
 # 專案概述
 
+![Demo of the application](assets//split_the_bill.gif)
+
 ### - 目的
 
 程式用來解決需求, 從生活有感的事情開始出發
