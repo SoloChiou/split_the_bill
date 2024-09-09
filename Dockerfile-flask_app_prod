@@ -1,0 +1,23 @@
+#Flask Dockerfile prod
+FROM python:3.10
+
+WORKDIR /app
+
+# 更新 pip 和 setuptools
+RUN pip install --upgrade pip setuptools
+
+# 複製 requirements.txt 並安裝 Python 依賴
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
+
+# 將主機當前目錄中的所有文件複製到容器的工作目錄中
+COPY . .
+
+# 設置環境變量
+ENV FLASK_APP=app.py
+ENV PORT=8080
+# # 運行數據庫遷移並啟動應用
+# # 'sh' '-c' 同時執行db遷移和啟動flask應用
+CMD ["sh", "-c", "flask db upgrade && python app.py"]
+
+# CMD ["python", "app.py"]

@@ -23,13 +23,13 @@ services:
     networks:
       - my_network
 
-  flask_app:
+  flask_app_prod:
     build:
       context: .
-      dockerfile: Dockerfile-flask_app
-    container_name: flask_app
-    ports:
-      - "5000:5000"
+      dockerfile: Dockerfile-flask_app_prod
+    container_name: flask_app_prod
+    # ports:
+    # - "5000:5000"
     environment:
       # (本地開發用@localhost:主機端口, 連上docker用@mysql:容器端口)
       - DATABASE_URL=mysql+mysqlconnector://solochiou:password@mysql:3306/split_the_bill
@@ -44,43 +44,29 @@ services:
       # 語法 [本地容器位置]:[掛載容器位置]
       - .:/app
 
-  vue_app_dev:
-    build:
-      context: .
-      dockerfile: Dockerfile-vue_dev
-    container_name: vue_app_dev
-    ports:
-      - "8080:8080"
-    networks:
-      - my_network
-    volumes:
-      - ./frontend:/frontend
-      - /frontend/node_modules
-    command: npm run dev -- --host 0.0.0.0
-
   vue_app_prod:
     build:
       context: .
       dockerfile: Dockerfile-vue_prod
     container_name: vue_app_prod
-    expose:
-      - "80"
-    networks:
-      - my_network
-    volumes:
-      - ./frontend/dist:/usr/share/nginx/html
-
-  nginx:
-    image: nginx:latest
-    container_name: nginx
     ports:
-      - "8080:80"
-    volumes:
-      - ./frontend/nginx/default.conf:/etc/nginx/conf.d/default.conf
-    depends_on:
-      - vue_app_prod
+      - "8080:8080"
     networks:
       - my_network
+  #   volumes:
+  #     - ./frontend/dist:/usr/share/nginx/html
+
+  # nginx:
+  #   image: nginx:latest
+  #   container_name: nginx
+  #   ports:
+  #     - "8080:80"
+  #   volumes:
+  #     - ./frontend/nginx/default.conf:/etc/nginx/conf.d/default.conf
+  #   depends_on:
+  #     - vue_app_prod
+  #   networks:
+  #     - my_network
 
 volumes:
   mysql-data-volumes:
