@@ -21,8 +21,11 @@ RUN npm install -g http-server
 
 WORKDIR /frontend/dist
 
+# cloud run提供的端口
+ENV PORT=8080
+
 # 使用 http-server 運行 Vue 
-CMD ["http-server", "-p", "8080"]
+CMD ["http-server", "-p", $PORT]
 
 # # 使用 Nginx 提靜態的文件服務
 # FROM nginx:alpine

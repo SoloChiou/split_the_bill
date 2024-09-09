@@ -1,3 +1,4 @@
+# docker-compose_prod
 version: "3.1"
 
 services:
@@ -32,6 +33,7 @@ services:
     # - "5000:5000"
     environment:
       # (本地開發用@localhost:主機端口, 連上docker用@mysql:容器端口)
+      - port=8080
       - DATABASE_URL=mysql+mysqlconnector://solochiou:password@mysql:3306/split_the_bill
       - LINE_CHANNEL_ACCESS_TOKEN=${LINE_CHANNEL_ACCESS_TOKEN}
       - LINE_CHANNEL_SECRET=${LINE_CHANNEL_SECRET}
@@ -49,8 +51,10 @@ services:
       context: .
       dockerfile: Dockerfile-vue_prod
     container_name: vue_app_prod
-    ports:
-      - "8080:8080"
+    environment:
+      - PORT=8080
+    # ports:
+    #   - "8080:8080"
     networks:
       - my_network
   #   volumes:

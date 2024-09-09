@@ -1,3 +1,4 @@
+# docker-compose_dev
 version: "3.1"
 
 services:
@@ -32,6 +33,7 @@ services:
       - "5000:5000"
     environment:
       # (本地開發用@localhost:主機端口, 連上docker用@mysql:容器端口)
+      - port=5000
       - DATABASE_URL=mysql+mysqlconnector://solochiou:password@mysql:3306/split_the_bill
       - LINE_CHANNEL_ACCESS_TOKEN=${LINE_CHANNEL_ACCESS_TOKEN}
       - LINE_CHANNEL_SECRET=${LINE_CHANNEL_SECRET}
