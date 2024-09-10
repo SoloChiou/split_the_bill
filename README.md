@@ -1,5 +1,7 @@
 # 專案概述
 
+### - 操作演示
+
 ![Demo of the application](assets//split_the_bill.gif)
 
 ### - 目的
