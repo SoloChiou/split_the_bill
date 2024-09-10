@@ -19,7 +19,9 @@
 | 開發工具   | VSCode                    |
 | 前端技術   | Vue.js                    |
 | 後端技術   | Flask, Python, SQLAlchemy |
-| 容器化技術 | Docker                    |
+| 資料庫     | MySQL                     |
+| 容器化技術 | Docker, DockerCompose     |
+| 佈署       | GCP                       |
 
 ---
 
